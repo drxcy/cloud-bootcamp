@@ -56,3 +56,84 @@ rm -rf       # Delete files/folders
 cat          # View contents of file
 nano         # Open file for editing
 
+# Steps for this mini project
+
+Step 1 – Create EC2 Instance
+Launch EC2:
+
+Amazon Linux 2
+
+t2.micro
+
+Allow SSH (port 22) in security group
+
+# Connect via SSH:
+
+ssh -i your-key.pem ec2-user@EC2_PUBLIC_IP
+Step 2 – Install Apache
+
+sudo yum update -y
+sudo yum install httpd -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
+# Step 3 – Create HTML Page
+
+sudo nano /var/www/html/index.html
+# Step 4 – Create S3 Bucket
+Create S3 bucket in console or via AWS CLI:
+
+aws s3 mb s3://your-unique-bucket-name
+# Upload a file:
+
+aws s3 cp myimage.jpg s3://your-unique-bucket-name/
+# Optional public access:
+
+Set bucket policy or object ACL to public-read for testing.
+
+# Step 5 – IAM Role for EC2
+Go to IAM → Roles → Create role
+
+# Trusted entity: EC2
+
+Attach policy: AmazonS3FullAccess
+
+Example policy:
+
+json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::your-unique-bucket-name/*"
+    }
+  ]
+}
+# Attach role to EC2 instance via console.
+
+# Step 6 – Test
+Visit:
+
+cpp
+http://YOUR_EC2_PUBLIC_IP
+You should see your page and the image from S3.
+# To Create Bucket via console
+aws s3 mb s3://bucketname
+aws s3 cp file s3://bucketname/
+# Create bucket policy to restrict access only to your IAM role:
+Example bucket policy:
+
+{
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Effect":"Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::YOUR_ACCOUNT_ID:role/YOUR_EC2_ROLE_NAME"
+      },
+      "Action":"s3:GetObject",
+      "Resource":"arn:aws:s3:::your-unique-bucket-name/*"
+    }
+  ]
+}
