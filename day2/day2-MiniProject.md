@@ -55,6 +55,11 @@ mkdir        # Make directory
 rm -rf       # Delete files/folders
 cat          # View contents of file
 nano         # Open file for editing
+# 🔨 Part 2: Mini Project – Static Website with EC2 + S3 + IAM
+
+## ✅ Objective:
+Deploy a static HTML page from an EC2 server that pulls an image hosted on S3, with secure access managed via IAM.
+
 
 # Steps for this mini project
 
