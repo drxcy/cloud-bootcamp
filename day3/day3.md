@@ -11,7 +11,7 @@ By the end of **Day 3**, you will:
 - ✅ Understand how **NAT Gateways** and **Internet Gateways** function
 - ✅ Practice creating your own VPC manually (no wizard!)
 - ✅ Deploy an **EC2 instance** in a public subnet and verify internet access
-- ✅ Complete a quiz and mini-project for hands-on practice
+
 
 ---
 
