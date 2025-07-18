@@ -20,7 +20,7 @@ Automate code deployment to S3 using GitHub and Jenkins.
 git init
 git add .
 git commit -m "Initial site"
-git remote add origin <your-repo-url>
+git remote add origin https://github.com/drxcy/Cloud_Sample-Project.git
 git push -u origin main
 
 ### Step 3: Launch EC2 Instance (Free Tier)
@@ -83,7 +83,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/YOUR_USERNAME/YOUR_REPO.git'
+                git 'https://github.com/drxcy/Cloud_Sample-Project.git'
             }
         }
         stage('Deploy to S3') {
@@ -121,7 +121,7 @@ Push a change to GitHub
 
 Jenkins pulls → uploads to S3
 
-Visit: http://day8-jenkins-site-bucket.s3-website.ap-south-1.amazonaws.com/
+Visit: http://day5-jenkins-site-bucket.s3-website.ap-south-1.amazonaws.com/
 
 screenshots 
 
